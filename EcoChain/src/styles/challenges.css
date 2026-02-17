@@ -1,0 +1,38 @@
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #f5f3ef 0%, #e8e4dd 100%);
+}
+h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+}
+.challenge-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+.challenge-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+.challenge-active {
+    border: 3px solid #10b981;
+}
+.challenge-completed {
+    opacity: 0.7;
+}
+.progress-bar-animated {
+    transition: width 1s ease-in-out;
+}
+.participant-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    background: #e0f2fe;
+    color: #0284c7;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}

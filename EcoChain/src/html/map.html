@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoChain - Map and Actions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="../styles/custom.css">
+    <link rel="stylesheet" href="../styles/map.css">
+</head>
+<body class="bg-gray-50">
+    <!-- nav -->
+    <nav class="bg-white shadow-sm sticky top-0" style="z-index: 100;">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="./index.html" class="flex items-center space-x-2">
+                    <div class="w-9 h-9 bg-gradient-to-br from-green-600 to-green-800 rounded-full flex items-center justify-center">
+                        <span class="text-white text-lg">🌱</span>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">EcoChain</span>
+                </a>
+                <div class="desktop-nav flex items-center space-x-5 text-sm">
+                    <a href="./map.html" class="text-green-700 font-semibold">Карта</a>
+                    <a href="./challenges.html" class="text-gray-600 hover:text-green-700">Челленджи</a>
+                    <a href="./verify.html" class="text-gray-600 hover:text-green-700">Верификация</a>
+                    <a href="./dashboard.html" class="text-gray-600 hover:text-green-700">Профиль</a>
+                </div>
+                <div class="md:hidden flex gap-2 text-xs">
+                    <a href="./challenges.html" class="px-2 py-1 bg-gray-100 rounded-lg">🏆</a>
+                    <a href="./verify.html" class="px-2 py-1 bg-gray-100 rounded-lg">✅</a>
+                    <a href="./dashboard.html" class="px-2 py-1 bg-gray-100 rounded-lg">👤</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- main layout -->
+    <div class="map-layout flex" style="height: calc(100vh - 57px);">
+        <!-- sidebar -->
+        <div class="sidebar w-80 p-5">
+            <h2 class="text-xl font-bold mb-4 text-gray-800">🗺️ Действия на карте</h2>
+            <div class="filter-panel mb-4">
+                <div class="mb-3">
+                    <label class="block text-xs font-bold mb-1 text-gray-600">СТАТУС</label>
+                    <select id="statusFilter" class="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white">
+                        <option value="all">Все</option>
+                        <option value="pending">⏳ В ожидании</option>
+                        <option value="verified">✅ Верифицировано</option>
+                        <option value="rejected">❌ Отклонено</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="block text-xs font-bold mb-1 text-gray-600">ТИП</label>
+                    <select id="typeFilter" class="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm bg-white">
+                        <option value="all">Все типы</option>
+                        <option value="cleanup">🧹 Уборка</option>
+                        <option value="tree">🌳 Деревья</option>
+                        <option value="recycle">♻️ Переработка</option>
+                        <option value="bike">🚲 Велосипед</option>
+                        <option value="water">💧 Вода</option>
+                        <option value="energy">💡 Энергия</option>
+                        <option value="education">📚 Просвещение</option>
+                        <option value="other">🌱 Другое</option>
+                    </select>
+                </div>
+                <button id="applyFilters" class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition text-sm">
+                    Применить фильтры
+                </button>
+            </div>
+            <button onclick="showAddModal()" class="w-full mb-4 px-4 py-3 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition md:hidden">
+                + Добавить действие
+            </button>
+            <div id="actionsList">
+                <div class="text-center py-8 text-gray-400">
+                    <div class="animate-spin rounded-full h-8 w-8 border-2 border-green-500 border-t-transparent mx-auto mb-2"></div>
+                    Загрузка...
+                </div>
+            </div>
+        </div>
+        <!-- map -->
+        <div class="map-container flex-1 relative">
+            <div id="map"></div>
+            <button id="addActionBtn" onclick="showAddModal()"
+                    class="hidden md:block px-5 py-2.5 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition shadow-lg">
+                + Добавить действие
+            </button>
+        </div>
+    </div>
+
+    <!--add action modal-->
+    <div id="addActionModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">🌱 Новое действие</h3>
+                <button onclick="hideAddModal()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
+                    ✕
+                </button>
+            </div>
+
+            <form id="addActionForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold mb-1">Название *</label>
+                    <input type="text" id="actionTitle" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" placeholder="Краткое описание" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Описание *</label>
+                    <textarea id="actionDescription" rows="2" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" placeholder="Подробности..." required></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Тип *</label>
+                        <select id="actionType" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500">
+                            <option value="cleanup">🧹 Уборка</option>
+                            <option value="tree">🌳 Дерево</option>
+                            <option value="recycle">♻️ Переработка</option>
+                            <option value="bike">🚲 Велосипед</option>
+                            <option value="water">💧 Вода</option>
+                            <option value="energy">💡 Энергия</option>
+                            <option value="education">📚 Просвещение</option>
+                            <option value="other">🌱 Другое</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-1">Количество</label>
+                        <input type="number" id="actionQuantity" class="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" value="1" min="1">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Фото ДО (проблема) *</label>
+                    <input type="file" id="photoBefore" accept="image/*" capture="environment" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" required>
+                    <div id="photoBeforePreview"></div>
+                </div>
+                <div>
+                    <button type="button" id="getLocationBtn" class="w-full px-4 py-2.5 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg font-semibold hover:bg-blue-100 transition">
+                        📍 Получить текущую локацию
+                    </button>
+                    <div id="locationInfo" class="mt-1 text-sm"></div>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="hideAddModal()" class="flex-1 py-2.5 border-2 border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition">
+                        Отмена
+                    </button>
+                    <button type="submit" class="flex-1 py-2.5 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition">
+                        Создать 🌱
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--complete action modal-->
+    <div id="completeActionModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">✅ Завершить действие</h3>
+                <button onclick="hideCompleteModal()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition">
+                    ✕
+                </button>
+            </div>
+
+            <form id="completeActionForm" class="space-y-4">
+                <div class="p-4 bg-green-50 border border-green-200 rounded-xl text-sm text-green-800">
+                    📸 Загрузите фото результата — это нужно для верификации другими участниками
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Фото ПОСЛЕ (результат) *</label>
+                    <input type="file" id="photoAfter" accept="image/*" capture="environment" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm" required>
+                    <div id="photoAfterPreview"></div>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Комментарий</label>
+                    <textarea id="completionComment" rows="2" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500" placeholder="Расскажи о процессе..."></textarea>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="hideCompleteModal()" class="flex-1 py-2.5 border-2 border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition">
+                        Отмена
+                    </button>
+                    <button type="submit" class="flex-1 py-2.5 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition">
+                        Завершить ✅
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/globalmodalsettings.js"></script>
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/map.js"></script>
+</body>
+</html>

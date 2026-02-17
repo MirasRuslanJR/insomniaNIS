@@ -1,0 +1,147 @@
+/* TT Travels Next Trial - Thin (100) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Thin Italic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - ExtraLight (200) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial ExtraLight Italic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - Light (300) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Light Italic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - Regular (400) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - Medium (500) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Medium Italic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - DemiBold (600) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial DemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial DemiBold Italic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - Bold (700) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Bold Italic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - ExtraBold (800) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial ExtraBold Italic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - Black (900) */
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels';
+    src: url('../fonts/TT Travels Next Trial Black Italic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - Black Outline (отдельное семейство) */
+@font-face {
+    font-family: 'TT Travels Outline';
+    src: url('../fonts/TT Travels Next Trial Black Outline.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TT Travels Outline';
+    src: url('../fonts/TT Travels Next Trial Black Outline Italic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* TT Travels Next Trial - Variable (поддерживает все веса 100-900) */
+@font-face {
+    font-family: 'TT Travels Variable';
+    src: url('../fonts/TT Travels Next Trial Variable.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}

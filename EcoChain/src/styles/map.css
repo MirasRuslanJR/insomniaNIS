@@ -1,0 +1,99 @@
+body { font-family: 'DM Sans', sans-serif; overflow: hidden; }
+h1,h2,h3 { font-family: 'Fraunces', serif; }
+#map {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 1;
+}
+.leaflet-pane{ z-index: 1 !important; }
+.leaflet-top, .leaflet-bottom{ z-index: 2 !important; }
+.leaflet-popup-pane{ z-index: 3 !important; }
+.sidebar {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    overflow-y: auto;
+    background: white;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+}
+#addActionBtn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+}
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+.modal-overlay.active {
+    display: flex;
+}
+.modal-box {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    width: 100%;
+    max-width: 600px;
+    max-height: 92vh;
+    overflow-y: auto;
+    position: relative;
+    z-index: 10000;
+}
+.action-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #e5e7eb;
+}
+.action-card:hover {
+    background: #f0fdf4;
+    border-color: #86efac;
+    transform: translateX(2px);
+}
+.filter-panel {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+}
+@media (max-width: 768px) {
+    body { overflow: auto; }
+    .map-layout {
+        flex-direction: column !important;
+        height: auto !important;
+    }
+    .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 45vh;
+        order: 2;
+    }
+    .map-container {
+        height: 55vw !important;
+        min-height: 300px;
+        order: 1;
+    }
+    #map {
+        position: relative !important;
+        height: 100% !important;
+    }
+    #addActionBtn {
+        top: 8px;
+        right: 8px;
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+    nav .desktop-nav { display: none; }
+}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoChain - Локальные экологические действия</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/custom.css">
+    <link rel="stylesheet" href="../styles/ecochain.css">
+</head>
+<body>
+    <!-- nav -->
+    <nav class="navbar-blur fixed top-0 w-full z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-gradient-to-br from-teal-600 to-green-600 rounded-2xl flex items-center justify-center transform transition-transform group-hover:scale-110">
+                        <span class="text-white text-2xl">🌱</span>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-900">EcoChain</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 hover:text-teal-600 transition font-medium">Возможности</a>
+                    <a href="#how-it-works" class="text-gray-700 hover:text-teal-600 transition font-medium">Как работает</a>
+                    <a href="#impact" class="text-gray-700 hover:text-teal-600 transition font-medium">Влияние</a>
+                    <button onclick="showAuthModal()" class="px-5 py-2.5 text-teal-600 hover:bg-teal-50 rounded-xl transition font-semibold">
+                        Войти
+                    </button>
+                    <button onclick="showAuthModal('signup')" class="btn-gradient px-6 py-2.5 text-white rounded-xl font-semibold">
+                        Начать
+                    </button>
+                </div>
+                
+                <button class="md:hidden text-gray-700 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <section class="hero-bg min-h-screen flex items-center justify-center text-white pt-24 pb-16 relative">
+        <div class="float-element" style="top: 10%; left: 10%; font-size: 3rem;">🌍</div>
+        <div class="float-element" style="top: 20%; right: 15%; font-size: 2.5rem; animation-delay: 2s;">🌍</div>
+        <div class="float-element" style="bottom: 20%; left: 20%; font-size: 3.5rem; animation-delay: 4s;">🌍</div>
+        <div class="float-element" style="bottom: 15%; right: 10%; font-size: 2rem; animation-delay: 6s;">🌍</div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
+                <div class="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-md rounded-full mb-8">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span class="text-sm font-semibold">Живая карта экологических действий</span>
+                </div>
+
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+                    Измени город.<br/>
+                    <span class="text-green-300">Измени мир.</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl mb-12 leading-relaxed text-white/90 max-w-3xl mx-auto">
+                    Превращай экологические действия в измеримый результат. Верифицируй действия других. Соревнуйся с районами. Получай признание.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                    <button onclick="showAuthModal('signup')" class="px-10 py-5 bg-white text-teal-700 rounded-2xl font-bold text-lg hover:bg-green-50 transition transform hover:scale-105 shadow-2xl">
+                        Начать сейчас →
+                    </button>
+                    <button onclick="location.href='../map.html'" class="px-10 py-5 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white rounded-2xl font-bold text-lg hover:bg-white/20 transition">
+                        Смотреть карту
+                    </button>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-4xl font-bold mb-2 stat-number" id="totalActions">0</div>
+                        <div class="text-sm text-white/80">Действий</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-4xl font-bold mb-2 stat-number" id="totalUsers">0</div>
+                        <div class="text-sm text-white/80">Участников</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-4xl font-bold mb-2 stat-number" id="totalCO2">0</div>
+                        <div class="text-sm text-white/80">кг CO₂</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="text-4xl font-bold mb-2 stat-number" id="activeChallenges">0</div>
+                        <div class="text-sm text-white/80">Челленджей</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 110C120 100 240 80 360 75C480 70 600 80 720 85C840 90 960 90 1080 85C1200 80 1320 70 1380 65L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V120Z" fill="#f8fffe"/>
+            </svg>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="impact-badge mb-6">Функциональность</span>
+                <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Всё что нужно для<br/>экологических действий
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Полная платформа для документирования, верификации и отслеживания экологического влияния
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-green-500 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
+                        🗺️
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Живая карта</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Интерактивная карта с реальными экологическими действиями в твоём районе. Видь результаты в реальном времени.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
+                        ✅
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">P2P Верификация</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Система проверки действий сообществом. 3 независимых участника подтверждают каждое действие.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
+                        📊
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">CO₂ Калькулятор</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Точный подсчёт сэкономленного CO₂ по каждому действию. Видь реальное влияние на климат.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
+                        🏆
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Челленджи</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Соревнуйся с другими районами в челленджах. Получай награды за достижения.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
+                        🔒
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Trust Score</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Зарабатывай репутацию через честную верификацию. Больше доверия — больше влияния.
+                    </p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center text-3xl mb-6 shadow-lg">
+                        📈
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Прогресс</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Отслеживай свой рост и вклад в экологию. Личная статистика и достижения.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="how-it-works" class="py-24 bg-gradient-to-b from-white to-teal-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="impact-badge mb-6">Простой процесс</span>
+                <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Как это работает
+                </h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-12">
+                <div class="process-step" data-aos="fade-right">
+                    <div class="process-number">1</div>
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Сделай экологическое действие</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Убери мусор, посади дерево, используй велосипед, экономь воду — любое действие имеет значение.
+                        </p>
+                        <div class="flex items-center gap-2 text-teal-600 font-semibold">
+                            <span>Фото ДО обязательно</span>
+                            <span class="text-2xl">📸</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-left">
+                    <div class="process-number">2</div>
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Заверши и загрузи</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            После завершения действия сделай фото ПОСЛЕ и загрузи на платформу с геолокацией.
+                        </p>
+                        <div class="flex items-center gap-2 text-teal-600 font-semibold">
+                            <span>Автоматический подсчёт CO₂</span>
+                            <span class="text-2xl">🌍</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-right">
+                    <div class="process-number">3</div>
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Пройди верификацию</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            3 независимых участника проверят твоё действие. При 2+ подтверждениях — автоматическая верификация.
+                        </p>
+                        <div class="flex items-center gap-2 text-teal-600 font-semibold">
+                            <span>Система доверия</span>
+                            <span class="text-2xl">✅</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-left">
+                    <div class="process-number">4</div>
+                    <div class="bg-white rounded-2xl p-8 shadow-lg">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Получи награды</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            Зарабатывай EcoPoints, повышай Trust Score, получай бейджи и участвуй в челленджах.
+                        </p>
+                        <div class="flex items-center gap-2 text-teal-600 font-semibold">
+                            <span>Визуализация прогресса</span>
+                            <span class="text-2xl">🏆</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="impact-badge mb-6">Реальное влияние</span>
+                <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Почему EcoChain работает
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl mb-6">🎯</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Измеримо</h3>
+                    <p class="text-gray-600">
+                        Каждое действие конвертируется в реальные килограммы сэкономленного CO₂
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl mb-6">🔐</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Прозрачно</h3>
+                    <p class="text-gray-600">
+                        P2P верификация исключает фейковые действия и создаёт доверие
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-5xl mb-6">🚀</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Мотивирующе</h3>
+                    <p class="text-gray-600">
+                        Геймификация, челленджи и сообщество делают экологию увлекательной
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gradient-to-br from-teal-600 to-green-600 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 text-9xl">🌱</div>
+            <div class="absolute bottom-10 right-10 text-9xl">♻️</div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-3xl mx-auto" data-aos="fade-up">
+                <h2 class="text-5xl md:text-6xl font-bold mb-8">
+                    Готов изменить мир?
+                </h2>
+                <p class="text-2xl mb-12 text-white/90">
+                    Присоединяйся к сообществу, которое делает измеримый вклад в экологию каждый день
+                </p>
+                <button onclick="showAuthModal('signup')" class="px-12 py-6 bg-white text-teal-700 rounded-2xl font-bold text-xl hover:bg-green-50 transition transform hover:scale-105 shadow-2xl">
+                    Начать сейчас 🚀
+                </button>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-green-500 rounded-2xl flex items-center justify-center">
+                            <span class="text-2xl">🌱</span>
+                        </div>
+                        <span class="text-2xl font-bold">EcoChain</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6 max-w-md">
+                        Платформа для верификации экологических действий с реальным измеримым влиянием на окружающую среду
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Платформа</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="./map.html" class="hover:text-white transition">Карта</a></li>
+                        <li><a href="./challenges.html" class="hover:text-white transition">Челленджи</a></li>
+                        <li><a href="./verify.html" class="hover:text-white transition">Верификация</a></li>
+                        <li><a href="./dashboard.html" class="hover:text-white transition">Дашборд</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4">О проекте</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="./index.html" class="hover:text-white transition">Главная</a></li>
+                        <li><a href="#" class="hover:text-white transition">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>© 2026 EcoVerse • insomnia? • NIS Hackathon 2026</p>
+            </div>
+        </div>
+    </footer>
+    <div id="authModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full relative shadow-2xl" data-aos="zoom-in">
+            <button onclick="hideAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-green-500 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
+                    🌱
+                </div>
+                <h3 class="text-3xl font-bold text-gray-900">Добро пожаловать</h3>
+                <p class="text-gray-600 mt-2">Войди или создай аккаунт</p>
+            </div>
+            
+            <div id="authError" class="hidden bg-red-50 text-red-700 px-4 py-3 rounded-xl mb-6 text-sm"></div>
+            
+            <form id="authForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-700">Email</label>
+                    <input type="email" id="authEmail" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-transparent transition" placeholder="your@email.com" required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold mb-2 text-gray-700">Пароль</label>
+                    <input type="password" id="authPassword" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-transparent transition" placeholder="••••••••" required>
+                </div>
+                
+                <div id="signupFields" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">Имя</label>
+                        <input type="text" id="authName" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-transparent transition" placeholder="Ваше имя">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-2 text-gray-700">Район</label>
+                        <select id="authDistrict" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-transparent transition">
+                            <!-- заполняется из DISTRICTS в firebase-config.js -->
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-gradient w-full py-4 text-white rounded-xl font-bold text-lg">
+                    <span id="authButtonText">Войти</span>
+                </button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <button id="authToggle" onclick="toggleAuthMode()" class="text-teal-600 hover:text-teal-700 font-semibold transition">
+                    Нет аккаунта? Зарегистрируйся
+                </button>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-gray-200">
+                <button onclick="signInWithGoogle()" class="w-full flex items-center justify-center gap-3 px-4 py-3 border-2 border-gray-200 rounded-xl hover:bg-gray-50 transition font-semibold">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Войти через Google
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>

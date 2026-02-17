@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoChain - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/custom.css">
+</head>
+<body>
+    <!-- nav -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="./index.html" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-green-600 to-green-800 rounded-full flex items-center justify-center">
+                        <span class="text-white text-xl">🌱</span>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-800">EcoChain</span>
+                </a>
+                <div class="flex items-center space-x-6">
+                    <a href="./map.html" class="text-gray-700 hover:text-green-700">Карта</a>
+                    <a href="./challenges.html" class="text-gray-700 hover:text-green-700">Челленджи</a>
+                    <a href="./verify.html" class="text-gray-700 hover:text-green-700">Верификация</a>
+                    <a href="./dashboard.html" class="text-green-700 font-semibold">Профиль</a>
+                    <button onclick="signOutUser()" class="px-6 py-2 text-red-600 hover:bg-red-50 rounded-lg font-semibold transition">
+                        Выход
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--profile-->
+    <div class="container mx-auto px-6 py-8">
+        <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-2xl p-8 text-white mb-8 shadow-lg">
+            <div class="flex items-center gap-6">
+                <img id="userPhoto" src="" alt="Avatar" class="w-24 h-24 rounded-full border-4 border-white shadow-lg">
+                <div class="flex-1">
+                    <h1 id="userName" class="text-4xl font-bold mb-2">Loading...</h1>
+                    <div class="flex items-center gap-4 text-lg">
+                        <span id="userDistrict" class="opacity-90">📍 Район</span>
+                        <span id="userJoined" class="opacity-90">🗓️ С нами с...</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-2 streak-flame">🔥</div>
+                    <div class="text-3xl font-bold" id="userStreak">0</div>
+                    <div class="text-sm opacity-90">дней подряд</div>
+                </div>
+            </div>
+        </div>
+        <!-- stats grid -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="stat-card">
+                <div class="text-4xl mb-3">⭐</div>
+                <div class="text-3xl font-bold text-green-600" id="userPoints">0</div>
+                <div class="text-gray-600">EcoPoints</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="text-4xl mb-3">✅</div>
+                <div class="text-3xl font-bold text-blue-600" id="userActions">0</div>
+                <div class="text-gray-600">Действий</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="text-4xl mb-3">🌍</div>
+                <div class="text-3xl font-bold text-purple-600" id="userCO2">0</div>
+                <div class="text-gray-600">кг CO₂ saved</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="text-4xl mb-3">🏆</div>
+                <div class="text-3xl font-bold text-orange-600" id="userRank">-</div>
+                <div class="text-gray-600">Место в районе</div>
+            </div>
+        </div>
+
+        <!-- main -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-8">
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">Мои действия</h2>
+                        <a href="map.html" class="text-green-600 hover:text-green-700 font-semibold">
+                            Добавить +
+                        </a>
+                    </div>            
+                    <div id="userActionsList"></div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800">Прогресс в текущем месяце</h2>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Цель: 10 действий</span>
+                                <span id="monthProgress">0/10</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div id="monthProgressBar" class="bg-green-600 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">CO₂: 50 кг</span>
+                                <span id="co2Progress">0/50</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div id="co2ProgressBar" class="bg-blue-600 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <!-- badges -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800">Достижения</h2>
+                    
+                    <div id="badgesList" class="grid grid-cols-3 gap-4">
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <div class="text-4xl mb-2 opacity-30">🌱</div>
+                            <div class="text-xs text-gray-500">Новичок</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <div class="text-4xl mb-2 opacity-30">🌳</div>
+                            <div class="text-xs text-gray-500">Садовник</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <div class="text-4xl mb-2 opacity-30">♻️</div>
+                            <div class="text-xs text-gray-500">Эколог</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <div class="text-4xl mb-2 opacity-30">🚴</div>
+                            <div class="text-xs text-gray-500">Велосипедист</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <div class="text-4xl mb-2 opacity-30">⭐</div>
+                            <div class="text-xs text-gray-500">Звезда</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-100 rounded-lg">
+                            <div class="text-4xl mb-2 opacity-30">👑</div>
+                            <div class="text-xs text-gray-500">Легенда</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- trust scr -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800">Trust Score</h2>
+                    
+                    <div class="flex items-center justify-center mb-4">
+                        <svg class="progress-ring" width="150" height="150">
+                            <circle cx="75" cy="75" r="60" stroke="#e5e7eb" stroke-width="12" fill="none" />
+                            <circle id="trustCircle" cx="75" cy="75" r="60" stroke="#10b981" stroke-width="12" fill="none" 
+                                    stroke-dasharray="377" stroke-dashoffset="377" stroke-linecap="round" />
+                        </svg>
+                        <div class="absolute text-center">
+                            <div class="text-4xl font-bold text-green-600" id="trustScore">0</div>
+                            <div class="text-sm text-gray-500">из 100</div>
+                        </div>
+                    </div>
+                    <p class="text-center text-gray-600 text-sm">
+                        Верифицируй действия других пользователей, чтобы повысить свой Trust Score
+                    </p>  
+                    <a href="./verify.html" class="block mt-4 w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-center hover:bg-green-700 transition">
+                        Верифицировать →
+                    </a>
+                </div>
+                <!-- leaderboard -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800">Топ района</h2>                  
+                    <div id="leaderboard" class="space-y-3"></div>     
+                    <a href="./challenges.html" class="block mt-4 text-center text-green-600 hover:text-green-700 font-semibold">
+                        Посмотреть все →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="../js/firebase-config.js"></script>
+    <script type="module" src="../js/auth.js"></script>
+    <script type="module" src="../js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #f5f3ef 0%, #e8e4dd 100%);
+}
+h1, h2, h3 {font-family: 'Fraunces', serif;}
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+.stat-card:hover {transform: translateY(-4px);}
+.progress-ring {transform: rotate(-90deg);}
+.action-item {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-left: 4px solid #10b981;
+    transition: all 0.3s ease;
+}
+.action-item:hover {box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
+.badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.streak-flame {animation: flicker 2s infinite;}
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}

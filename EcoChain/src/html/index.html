@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>insomnia? | NIS Hackathon 2026</title>
+    <meta name="description" content="Explore how your choices shape the environment, manage resources, respond to climate events">
+    <script src="https://cdn.tailwindcss.com"></script> <!-- TailwindCSS -->
+    <script src="../js/tailwind-config.js"></script> <!-- Tailwin Config -->
+    <script src="../js/scroll-progress.js"></script> <!--Scroll Progress-->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" /> <!--CSS styles for AOS (Animation Library )-->
+    <link rel="stylesheet" href="../styles/fonts.css"> <!-- Fonts -->
+    <link rel="stylesheet" href="../styles/style.css"> <!-- Main styles -->
+</head>
+<body class="antialiased">
+    <div class="animated-background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+        <div class="shape shape-5"></div>
+    </div>
+    <nav class="navbar-glass fixed top-0 w-full z-50 transition-all duration-300"> <!-- nav menu -->
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl font-bold text-eco-700"><a href="#">EcoVerse</a></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-eco-800 hover:text-eco-600 transition font-medium">Home</a>
+                    <a href="#project" class="text-eco-800 hover:text-eco-600 transition font-medium">Project</a>
+                    <a href="#team" class="text-eco-800 hover:text-eco-600 transition font-medium">Team</a>
+                    <a href="#ecochain" class="text-eco-800 hover:text-eco-600 transition font-medium">EcoChain</a>
+                    <a href="#game" class="text-eco-800 hover:text-eco-600 transition font-medium">Game</a>
+                    <a href="#problem" class="text-eco-800 hover:text-eco-600 transition font-medium">Problem</a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="https://github.com/MirasRuslanJR/insomniaNIS" target="_blank" class="btn-futuristic text-white px-6 py-2.5 rounded-full font-medium inline-block">
+                        GitHub →
+                    </a>
+                </div>
+                <button class="md:hidden text-eco-800" onclick="hamburgermenu()"> <!--hamburger menu для маленьких экранов-->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="menuformobile" class="hidden md:hidden pt-4 pb-2"> <!-- compact menu for small screens -->
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-eco-800 hover:text-eco-600 transition py-2">Home</a>
+                    <a href="#project" class="text-eco-800 hover:text-eco-600 transition py-2">Project</a>
+                    <a href="#team" class="text-eco-800 hover:text-eco-600 transition py-2">Team</a>
+                    <a href="#ecochain" class="text-eco-800 hover:text-eco-600 transition py-2">EcoChain</a>
+                    <a href="#game" class="text-eco-800 hover:text-eco-600 transition py-2">Game</a>
+                    <a href="#problem" class="text-eco-800 hover:text-eco-600 transition py-2">Problem</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="fixed top-0 left-0 w-full h-1 bg-eco-100 z-50" style="margin-top: 72px;">
+        <div id="progressBar" class="h-full bg-gradient-to-r from-eco-500 to-eco-600 transition-all duration-300" style="width: 0%"></div>
+    </div>
+    
+    <section id="home" class="min-h-screen flex items-center pt-24 pb-16"> <!-- hero section (home)-->
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-5xl mx-auto" data-aos="fade-up">
+                <div class="inline-block mb-8">
+                    <span class="px-6 py-3 bg-white/70 backdrop-blur-sm text-eco-700 rounded-full text-sm font-semibold border border-eco-200">
+                        NIS Hackathon 2026 | SmartCity: GreenTech / ClimateTech
+                    </span>
+                </div>
+                <h1 class="text-6xl md:text-7xl lg:text-8xl font-semibold text-eco-900 mb-8 leading-tight">
+                    Control the future of your city.
+                </h1>
+                <p class="text-xl md:text-2xl text-eco-800 mb-12 leading-relaxed max-w-3xl mx-auto">
+                    Explore how your choices shape the environment, manage resources, respond to climate events, 
+                    and design a resilient future for our city.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#ecochain" class="btn-futuristic text-white px-10 py-4 rounded-full font-semibold text-lg inline-block">
+                        explore dashboard →
+                    </a>
+                    <a href="#game" class="btn-outline px-10 py-4 rounded-full font-semibold text-lg inline-block">
+                        play demo →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="problem" class="py-24"><!-- problem -->
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-5xl md:text-6xl font-bold section-title mb-8">
+                        The problem
+                    </h2>
+                    <p class="text-xl text-eco-800 leading-relaxed mb-6">
+                        Climate change, resource mismanagement, and urban growth create complex environmental challenges.
+                    </p>
+                    <p class="text-lg text-eco-700 leading-relaxed">
+                        People lack interactive tools to understand how everyday actions influence real ecological systems. 
+                        There's no trust in claimed eco-actions, no motivation to continue, and no visible connection between 
+                        personal choices and global climate impact.
+                    </p>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="image-placeholder" style="height: 400px;">
+                        <img src="../imgs/1.jpg" alt="The impact of CO2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="ecochain" class="py-24"><!-- solution and about our innovation (or platform) ecochain -->
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-5xl md:text-6xl font-bold section-title mb-6">
+                    Solution - What is EcoChain
+                </h2>
+                <p class="text-xl text-eco-800 max-w-4xl mx-auto leading-relaxed">
+                    EcoChain is a platform combining real-world eco actions with a climate simulation system. 
+                    Users complete local environmental tasks, verify each other's impact, and see how collective 
+                    decisions influence sustainability.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- features -->
+                <!-- 1 -->
+                <div class="glass-card rounded-3xl p-8" data-aos="fade-up" data-aos-delay="0">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-eco-900 mb-4">Live EcoMap</h3>
+                    <p class="text-eco-700 leading-relaxed">
+                        Interactive map with real-time updates showing ecological problems and solutions in your city
+                    </p>
+                </div>
+                <!--- 2 -->
+                <div class="glass-card rounded-3xl p-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-eco-900 mb-4">Photo-Proof System</h3>
+                    <p class="text-eco-700 leading-relaxed">
+                        Document your actions with before/after photos, timestamps, and geolocation for verification
+                    </p>
+                </div>
+                <!-- 3 -->
+                <div class="glass-card rounded-3xl p-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                     </div>
+
+                    <h3 class="text-2xl font-bold text-eco-900 mb-4">Peer Verification</h3>
+                    <p class="text-eco-700 leading-relaxed">
+                        Community validates actions through peer review. 3 confirmations = verified eco-action
+                    </p>
+                </div>
+                <!--4 -->
+                <div class="glass-card rounded-3xl p-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-eco-900 mb-4">Carbon Dashboard</h3>
+                    <p class="text-eco-700 leading-relaxed">
+                        Personal dashboard visualizing your carbon footprint with real-time CO₂ calculations
+                    </p>
+                </div>
+                <!-- 5-->
+                <div class="glass-card rounded-3xl p-8" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-eco-900 mb-4">District Challenges</h3>
+                    <p class="text-eco-700 leading-relaxed">
+                        Local challenges for your district with collective goals and community rewards
+                    </p> 
+
+                </div>
+
+                <!-- 6 -->
+                <div class="glass-card rounded-3xl p-8" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon w-20 h-20 rounded-2xl flex items-center justify-center mb-6"> 
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg> 
+                    </div>  
+                    <h3 class="text-2xl font-bold text-eco-900 mb-4">Rewards Hub</h3>
+                    <p class="text-eco-700 leading-relaxed">
+                        Exchange EcoPoints for real rewards from local eco-businesses and partners
+                    </p>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-24">    <!--climate impact-->
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-card rounded-3xl p-12" data-aos="fade-up">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold section-title mb-8">
+                            Measurable Climate Impact
+                        </h2>
+                        <p class="text-lg text-eco-800 mb-8 leading-relaxed">
+                            Every action converts to kilograms of saved CO₂. See the real impact of your choices on the climate.
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-eco-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-eco-900 mb-1">Cleanup = 2 kg CO₂</h4>
+                                    <p class="text-eco-700">Prevents emissions from waste decomposition</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-eco-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-eco-900 mb-1">Tree Planting = 22 kg CO₂/year</h4>
+                                    <p class="text-eco-700">One tree absorbs CO₂ throughout its lifetime</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-eco-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-eco-900 mb-1">10 km Cycling = 5 kg CO₂</h4>
+                                    <p class="text-eco-700">Savings compared to car travel</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="image-placeholder" style="height: 450px;">
+                            <img src="../imgs/2.jpg" alt="The Climate Impact">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section id="game" class="py-24"> <!-- game -->
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <div class="inline-block mb-6">
+                    <span class="px-6 py-3 bg-eco-700 text-white rounded-full text-sm font-semibold">
+                        educational game
+                    </span>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-bold section-title mb-6">
+                    Climate Survival: Base Under Threat
+                </h2>
+                <p class="text-xl text-eco-800 max-w-3xl mx-auto leading-relaxed">
+                    A strategic survival game where your decisions shape the climate and determine your base's future
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div data-aos="fade-right">
+                    <div class="image-placeholder" style="height: 500px;"></div>
+                </div>
+                <div data-aos="fade-left">
+                    <h3 class="text-3xl font-bold text-eco-900 mb-6">Game Concept</h3>
+                    <p class="text-lg text-eco-800 mb-8 leading-relaxed">
+                        You're a researcher managing a limited base. The world suffers periodic climate events: 
+                        heatwaves, floods, droughts. Collect resources, build ecological solutions, and protect 
+                        your base from disasters.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="game-card rounded-2xl p-6">
+                            <h4 class="text-xl font-bold text-eco-900 mb-2">Exploration</h4>
+                            <p class="text-eco-700">Explore the map, gather resources: water, metal, biomass</p>
+                        </div>
+                        <div class="game-card rounded-2xl p-6">
+                            <h4 class="text-xl font-bold text-eco-900 mb-2">Building</h4>
+                            <p class="text-eco-700">Construct shelter, water collectors, solar panels, plant trees</p>
+                        </div>
+                        <div class="game-card rounded-2xl p-6">
+                            <h4 class="text-xl font-bold text-eco-900 mb-2">Consequences</h4>
+                            <p class="text-eco-700">Your decisions affect the frequency and intensity of climate events</p>
+                        </div>
+
+                        <div class="game-card rounded-2xl p-6">
+                            <h4 class="text-xl font-bold text-eco-900 mb-2">Victory</h4>
+                            <p class="text-eco-700">Reduce carbon_level below threshold to stabilize the climate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="https://ecoverse-game.web.app" target="_blank" class="btn-futuristic text-white px-12 py-4 rounded-full font-semibold text-lg inline-block">
+                    play demo →
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+ 
+    <!-- used technologies -->
+    <section class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h2 class="text-5xl font-bold section-title mb-6">Technology Stack</h2>
+                <p class="text-xl text-eco-800">Modern technologies used for rapid development and scaling</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="glass-card rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-20 h-20 bg-eco-100 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-eco-900 mb-2">HTML/CSS/JS</h3>
+                    <p class="text-eco-700 text-sm">JavaScript + TailwindCSS</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 bg-eco-100 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-eco-900 mb-2">Firebase</h3>
+                    <p class="text-eco-700 text-sm">Data Base, Authentification, Storage</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 bg-eco-100 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-eco-900 mb-2">Leaflet.js</h3>
+                    <p class="text-eco-700 text-sm">An interactive map</p>
+                </div>
+                <div class="glass-card rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 bg-eco-100 rounded-2xl mx-auto mb-6 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-eco-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-eco-900 mb-2">GdScript (Godot)</h3>
+                    <p class="text-eco-700 text-sm">Game engine (PC Game)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+    <!-- last "join the movement" CTA -->
+    <section class="py-24">
+        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+            <div class="glass-card rounded-3xl p-12">
+                <h2 class="text-5xl font-bold section-title mb-6">Join the Movement</h2>
+                <p class="text-xl text-eco-800 mb-10">
+                    Become part of a community that's actually changing the climate. Every action matters.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="./main.html" target="_blank" class="btn-futuristic text-white px-10 py-4 rounded-full font-semibold text-lg inline-block">
+                        Launch Platform →
+                    </a>
+                    <a href="https://github.com/MirasRuslanJR/insomniaNIS" target="_blank" class="btn-outline px-10 py-4 rounded-full font-semibold text-lg inline-block">
+                        The source code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- footer -->
+    <footer class="py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-card rounded-3xl p-12">
+                <div class="grid md:grid-cols-4 gap-12 mb-8">
+                    <div class="md:col-span-2">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <span class="text-2xl font-bold text-eco-900">EcoVerse</span>
+                        </div>
+                        <p class="text-eco-700 mb-6 leading-relaxed">
+                            Interactive platform for verifying ecological actions with real-time mapping and 
+                            peer-to-peer verification. Created for NIS Hackathon 2025.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/MirasRuslanJR/insomniaNIS" target="_blank" class="w-12 h-12 bg-eco-100 rounded-xl flex items-center justify-center hover:bg-eco-200 transition">
+                                <svg class="w-6 h-6 text-eco-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-eco-900 mb-4">Navigation</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#home" class="text-eco-700 hover:text-eco-600 transition">Home</a></li>
+                            <li><a href="#project" class="text-eco-700 hover:text-eco-600 transition">Project</a></li>
+                            <li><a href="#ecochain" class="text-eco-700 hover:text-eco-600 transition">EcoChain</a></li>
+                            <li><a href="#game" class="text-eco-700 hover:text-eco-600 transition">Game</a></li>
+    
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-eco-900 mb-4">Resources</h4>
+                        <ul class="space-y-3">
+                            <li><a href="https://github.com/MirasRuslanJR/insomniaNIS" target="_blank" class="text-eco-700 hover:text-eco-600 transition">GitHub</a></li>
+                            <li><a href="mailto:dauletbek_m0112@ura.nis.edu.kz" class="text-eco-700 hover:text-eco-600 transition">Contact</a></li>
+                            <li><a href="./main.html" class="text-eco-700 hover:text-eco-600 transition">Platform</a></li>
+                            <li><a href="#game" class="text-eco-700 hover:text-eco-600 transition">Game</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pt-8 border-t border-eco-200">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-eco-700 text-sm">© 2026 insomnia?. NIS Hackathon. Nazarbayev Intellectual Schools.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script> <!-- AOS library for JS -->
+    <script src="../js/aos.js"></script> <!-- animate on scroll thingy that makes website interestin'-->
+    <script src="../js/navbar.js"></script> <!--"hamburger" menu and navbar -->
+</body>
+</html>
